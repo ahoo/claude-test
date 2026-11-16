@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>鳄鱼骑自行车 · 模型对比</title>
+<style>
+:root { --bg:#f6f7fb; --card:#fff; --ink:#1d2433; --muted:#667085; --line:#e4e7ec; --accent:#2f6fd6; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink);
+  font: 15px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+header, main { max-width:1200px; margin:0 auto; padding:0 24px; }
+header { padding-top:36px; }
+h1 { font-size:28px; margin:0 0 6px; }
+.prompt { color:var(--muted); margin:0; }
+h2 { font-size:19px; margin:40px 0 6px; }
+.lead { color:var(--muted); margin:0 0 14px; font-size:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+  display:flex; flex-direction:column; }
+.stage { position:relative; aspect-ratio:16/10; background:#dff3ff; }
+.stage img, .stage iframe { position:absolute; inset:0; width:100%; height:100%; border:0; object-fit:contain; }
+.info { padding:12px 14px 14px; display:flex; flex-direction:column; gap:4px; }
+.name { font-weight:700; }
+.tag { font-size:12px; color:var(--muted); }
+.meta { display:flex; gap:12px; flex-wrap:wrap; font-size:13px; color:var(--muted); }
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line);
+  border-radius:12px; overflow:hidden; font-size:14px; }
+th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle; }
+th { background:#f0f3f8; font-weight:600; white-space:nowrap; }
+tr:last-child td { border-bottom:0; }
+code { font-size:12px; color:var(--muted); }
+.bar { display:inline-block; vertical-align:middle; width:140px; height:8px; border-radius:4px;
+  background:#e6ecf7; position:relative; margin-right:8px; }
+.bar i { position:absolute; left:0; top:0; bottom:0; border-radius:4px; background:var(--accent); }
+.num { font-variant-numeric: tabular-nums; }
+.muted { color:var(--muted); }
+.table-wrap { overflow-x:auto; }
+ul { padding-left:20px; margin:8px 0; }
+li { margin:4px 0; }
+.note { background:#fff8e6; border:1px solid #f3e1a6; border-radius:12px; padding:12px 16px; font-size:14px; }
+footer { max-width:1200px; margin:0 auto; padding:28px 24px 40px; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>鳄鱼骑自行车 · 模型对比</h1>
+  <p class="prompt">提示词：「帮我用 svg 画一个鳄鱼骑自行车的动画，越精致越好，不要联网搜索素材」· 日期：2026-11-15</p>
+</header>
+<main>
+
+  <h2>成品并排</h2>
+  <p class="lead">每张卡片都是实际动画。点“打开文件”可单独查看或下载。</p>
+  <section class="grid">
+    <article class="card">
+      <div class="stage"><img src="sonnet-5.5/crocodile_bike.svg" alt="sonnet-5.5/crocodile_bike.svg"></div>
+      <div class="info">
+        <div class="name">Claude Sonnet 5.5</div>
+        <div class="tag">SVG · SMIL</div>
+        <div class="meta"><span>198.0 KB</span><span>140 个（SMIL）</span></div>
+        <a href="sonnet-5.5/crocodile_bike.svg" target="_blank" rel="noopener">打开文件 →</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="stage"><img src="opus-5.5/crocodile_bike.svg" alt="opus-5.5/crocodile_bike.svg"></div>
+      <div class="info">
+        <div class="name">Claude Opus 5.5</div>
+        <div class="tag">SVG · SMIL</div>
+        <div class="meta"><span>69.8 KB</span><span>55 个（SMIL）</span></div>
+        <a href="opus-5.5/crocodile_bike.svg" target="_blank" rel="noopener">打开文件 →</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="stage"><iframe src="fable-5.2/v3.html" title="fable-5.2/v3.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <div class="name">Claude Fable 5.2 · 第 3 轮</div>
+        <div class="tag">HTML · JavaScript</div>
+        <div class="meta"><span>25.8 KB</span><span>JS 逐帧驱动</span></div>
+        <a href="fable-5.2/v3.html" target="_blank" rel="noopener">打开文件 →</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="stage"><img src="haiku-5.5/crocodile_bike.svg" alt="haiku-5.5/crocodile_bike.svg"></div>
+      <div class="info">
+        <div class="name">Claude Haiku 5.5</div>
+        <div class="tag">SVG · SMIL</div>
+        <div class="meta"><span>86.0 KB</span><span>46 个（SMIL）</span></div>
+        <a href="haiku-5.5/crocodile_bike.svg" target="_blank" rel="noopener">打开文件 →</a>
+      </div>
+    </article>
+  </section>
+
+  <h2>Fable 5.2 三轮迭代</h2>
+  <p class="lead">Fable 5.2 在聊天里出图，三轮结果都保留在 <code>fable-5.2/</code> 目录。</p>
+  <section class="grid">
+    <article class="card">
+      <div class="stage"><iframe src="fable-5.2/v1.html" title="fable-5.2/v1.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <div class="name">Fable 5.2 · 第 1 轮</div>
+        <div class="tag">HTML · JavaScript</div>
+        <div class="meta"><span>13.3 KB</span><span>JS 逐帧驱动</span></div>
+        <a href="fable-5.2/v1.html" target="_blank" rel="noopener">打开文件 →</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="stage"><iframe src="fable-5.2/v2.html" title="fable-5.2/v2.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <div class="name">Fable 5.2 · 第 2 轮</div>
+        <div class="tag">HTML · JavaScript</div>
+        <div class="meta"><span>25.3 KB</span><span>JS 逐帧驱动</span></div>
+        <a href="fable-5.2/v2.html" target="_blank" rel="noopener">打开文件 →</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="stage"><iframe src="fable-5.2/v3.html" title="fable-5.2/v3.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <div class="name">Fable 5.2 · 第 3 轮（成品）</div>
+        <div class="tag">HTML · JavaScript</div>
+        <div class="meta"><span>25.8 KB</span><span>JS 逐帧驱动</span></div>
+        <a href="fable-5.2/v3.html" target="_blank" rel="noopener">打开文件 →</a>
+      </div>
+    </article>
+  </section>
+  <ul><li><b>第 1 轮</b>：用户反馈：效果一般啊，细节不多</li><li><b>第 2 轮</b>：用户反馈：不是动画了啊，也没有尾巴了（已知失败版本，静止）</li><li><b>第 3 轮（成品）</b>：用户反馈：—（当前成品）</li></ul>
+
+  <h2>指标对比</h2>
+  <p class="lead">以下数字由脚本直接从仓库文件统计：文件大小、动画元素数量、外部资源引用数。</p>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>模型</th><th>文件</th><th>格式</th><th>文件大小</th><th>动画实现</th><th>外部资源</th><th>生成脚本</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><b>Claude Sonnet 5.5</b></td>
+          <td><code>sonnet-5.5/crocodile_bike.svg</code></td>
+          <td>SVG · SMIL</td>
+          <td><div class="bar"><i style="width:100%"></i></div><span class="num">198.0 KB</span></td>
+          <td>140 个（SMIL）</td>
+          <td>无</td>
+          <td><a href="sonnet-5.5/gen.py">sonnet-5.5/gen.py</a></td>
+        </tr>
+        <tr>
+          <td><b>Claude Opus 5.5</b></td>
+          <td><code>opus-5.5/crocodile_bike.svg</code></td>
+          <td>SVG · SMIL</td>
+          <td><div class="bar"><i style="width:35%"></i></div><span class="num">69.8 KB</span></td>
+          <td>55 个（SMIL）</td>
+          <td>无</td>
+          <td><a href="opus-5.5/gen.py">opus-5.5/gen.py</a></td>
+        </tr>
+        <tr>
+          <td><b>Claude Fable 5.2 · 第 3 轮</b></td>
+          <td><code>fable-5.2/v3.html</code></td>
+          <td>HTML · JavaScript</td>
+          <td><div class="bar"><i style="width:13%"></i></div><span class="num">25.8 KB</span></td>
+          <td>JS 逐帧驱动</td>
+          <td>无</td>
+          <td><span class="muted">无</span></td>
+        </tr>
+        <tr>
+          <td><b>Claude Haiku 5.5</b></td>
+          <td><code>haiku-5.5/crocodile_bike.svg</code></td>
+          <td>SVG · SMIL</td>
+          <td><div class="bar"><i style="width:43%"></i></div><span class="num">86.0 KB</span></td>
+          <td>46 个（SMIL）</td>
+          <td>无</td>
+          <td><a href="haiku-5.5/gen.py">haiku-5.5/gen.py</a></td>
+        </tr>
+        <tr>
+          <td><b>Fable 5.2 · 第 1 轮</b></td>
+          <td><code>fable-5.2/v1.html</code></td>
+          <td>HTML · JavaScript</td>
+          <td><div class="bar"><i style="width:7%"></i></div><span class="num">13.3 KB</span></td>
+          <td>JS 逐帧驱动</td>
+          <td>无</td>
+          <td><span class="muted">无</span></td>
+        </tr>
+        <tr>
+          <td><b>Fable 5.2 · 第 2 轮</b></td>
+          <td><code>fable-5.2/v2.html</code></td>
+          <td>HTML · JavaScript</td>
+          <td><div class="bar"><i style="width:13%"></i></div><span class="num">25.3 KB</span></td>
+          <td>JS 逐帧驱动</td>
+          <td>无</td>
+          <td><span class="muted">无</span></td>
+        </tr>
+        <tr>
+          <td><b>Fable 5.2 · 第 3 轮（成品）</b></td>
+          <td><code>fable-5.2/v3.html</code></td>
+          <td>HTML · JavaScript</td>
+          <td><div class="bar"><i style="width:13%"></i></div><span class="num">25.8 KB</span></td>
+          <td>JS 逐帧驱动</td>
+          <td>无</td>
+          <td><span class="muted">无</span></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>要点</h2>
+  <ul><li><b>Claude Sonnet 5.5</b>：逐帧 IK 关键帧、d 属性形变的尾巴与围巾、多层视差背景</li><li><b>Claude Opus 5.5</b>：反向运动学预计算 48 帧、尾灯闪烁、扬尘与速度线</li><li><b>Claude Fable 5.2 · 第 3 轮</b>：内嵌 SVG，由 requestAnimationFrame 逐帧驱动；需下载后用浏览器打开</li><li><b>Claude Haiku 5.5</b>：逐帧 IK 脚踏、固定齿轮联动、头盔与围巾，尾巴与围巾行波形变</li></ul>
+  <p class="note">这是一次性对比，不是评分。文件大小和元素数只反映实现方式，不直接代表画面好坏，好坏请以上面的预览为准。</p>
+
+</main>
+<footer>
+  <div>仓库：<a href="https://github.com/ahoo/claude-test">github.com/ahoo/claude-test</a></div>
+  <div>页面由 <code>build_index.py</code> 生成，数字来自仓库文件，不是手填。</div>
+</footer>
+</body>
+</html>
