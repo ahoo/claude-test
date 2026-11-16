@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>鳄鱼骑自行车 · Fable 5.2 · 第 1 版</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#F3F1EA}
+svg{display:block;width:min(96vw,960px);height:auto}
+</style>
+</head>
+<body>
+<svg width="100%" viewBox="0 0 680 420" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>鳄鱼骑自行车动画</title>
+<desc>一只系着红围巾的绿色鳄鱼在乡间公路上骑一辆红色自行车，双腿踩踏板，车轮转动，尾巴摆动，背景的云、山丘和灌木向后滚动。</desc>
+<defs><clipPath id="scene"><rect x="0" y="0" width="680" height="420" rx="16"/></clipPath></defs>
+<g clip-path="url(#scene)">
+<rect x="0" y="0" width="680" height="420" fill="#BFE6F7"/>
+<rect x="0" y="210" width="680" height="110" fill="#D6F0FA"/>
+<g id="rays" stroke="#FFE08A" stroke-width="5" stroke-linecap="round">
+<line x1="580" y1="28" x2="580" y2="14"/><line x1="580" y1="132" x2="580" y2="146"/><line x1="528" y1="80" x2="514" y2="80"/><line x1="632" y1="80" x2="646" y2="80"/>
+<line x1="543" y1="43" x2="533" y2="33"/><line x1="617" y1="117" x2="627" y2="127"/><line x1="543" y1="117" x2="533" y2="127"/><line x1="617" y1="43" x2="627" y2="33"/>
+</g>
+<circle cx="580" cy="80" r="36" fill="#FFD25A"/>
+<circle cx="580" cy="80" r="27" fill="#FFE08A"/>
+<g id="clouds" fill="#FFFFFF">
+<g id="cloudset">
+<ellipse cx="110" cy="80" rx="46" ry="16"/><ellipse cx="95" cy="68" rx="24" ry="16"/><ellipse cx="128" cy="64" rx="28" ry="20"/>
+<ellipse cx="370" cy="120" rx="38" ry="12"/><ellipse cx="360" cy="110" rx="20" ry="13"/><ellipse cx="386" cy="108" rx="22" ry="15"/>
+<ellipse cx="560" cy="170" rx="34" ry="10"/><ellipse cx="552" cy="162" rx="18" ry="11"/><ellipse cx="574" cy="160" rx="18" ry="12"/>
+</g>
+<use href="#cloudset" x="680"/>
+</g>
+<g id="hillsFar" fill="#9AD0A0">
+<path id="hf" d="M0 300 C90 215 210 215 340 285 C460 220 590 205 680 300 V420 H0 Z"/>
+<use href="#hf" x="680"/>
+</g>
+<g id="hillsNear" fill="#74BD6E">
+<path id="hn" d="M0 318 C120 262 240 270 340 312 C440 268 560 262 680 318 V420 H0 Z"/>
+<use href="#hn" x="680"/>
+</g>
+<rect x="0" y="312" width="680" height="108" fill="#8CC665"/>
+<g id="bushes">
+<g id="bushset">
+<rect x="246" y="298" width="8" height="46" fill="#8A5A3B"/>
+<circle cx="250" cy="282" r="30" fill="#3F9A4A"/><circle cx="232" cy="296" r="20" fill="#4BAA55"/><circle cx="270" cy="296" r="20" fill="#4BAA55"/>
+<circle cx="60" cy="336" r="16" fill="#4BAA55"/><circle cx="80" cy="340" r="13" fill="#3F9A4A"/><circle cx="44" cy="341" r="11" fill="#3F9A4A"/>
+<circle cx="470" cy="338" r="14" fill="#4BAA55"/><circle cx="488" cy="341" r="11" fill="#3F9A4A"/>
+<circle cx="606" cy="335" r="17" fill="#3F9A4A"/><circle cx="626" cy="340" r="12" fill="#4BAA55"/>
+<circle cx="150" cy="343" r="3" fill="#FFFFFF"/><circle cx="160" cy="340" r="3" fill="#FFD25A"/><circle cx="372" cy="342" r="3" fill="#F28B9B"/><circle cx="545" cy="343" r="3" fill="#FFFFFF"/>
+</g>
+<use href="#bushset" x="680"/>
+</g>
+<rect x="0" y="350" width="680" height="70" fill="#6B6F76"/>
+<rect x="0" y="350" width="680" height="4" fill="#565A61"/>
+<g id="dashes" fill="#E9E6D8">
+<rect x="-80" y="398" width="44" height="5" rx="2"/><rect x="0" y="398" width="44" height="5" rx="2"/><rect x="80" y="398" width="44" height="5" rx="2"/><rect x="160" y="398" width="44" height="5" rx="2"/><rect x="240" y="398" width="44" height="5" rx="2"/><rect x="320" y="398" width="44" height="5" rx="2"/><rect x="400" y="398" width="44" height="5" rx="2"/><rect x="480" y="398" width="44" height="5" rx="2"/><rect x="560" y="398" width="44" height="5" rx="2"/><rect x="640" y="398" width="44" height="5" rx="2"/><rect x="720" y="398" width="44" height="5" rx="2"/>
+</g>
+<ellipse cx="330" cy="381" rx="150" ry="7" fill="#565A61"/>
+<g id="wind" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8">
+<line id="w1" x1="60" y1="200" x2="110" y2="200"/><line id="w2" x1="30" y1="250" x2="90" y2="250"/><line id="w3" x1="70" y1="300" x2="115" y2="300"/>
+</g>
+<g id="farLeg">
+<line id="fCrank" x1="320" y1="320" x2="296" y2="320" stroke="#7A7F87" stroke-width="5" stroke-linecap="round"/>
+<rect id="fPedal" x="286" y="318" width="20" height="5" rx="2" fill="#2B2B2B"/>
+<path id="fThigh" d="M308 222 L350 270" stroke="#3F7D2A" stroke-width="22" stroke-linecap="round" fill="none"/>
+<path id="fShin" d="M350 270 L296 312" stroke="#3F7D2A" stroke-width="15" stroke-linecap="round" fill="none"/>
+<ellipse id="fFoot" cx="302" cy="314" rx="13" ry="6" fill="#3F7D2A"/>
+</g>
+<path d="M388 186 Q396 208 407 201" stroke="#3F7D2A" stroke-width="11" stroke-linecap="round" fill="none"/>
+<g id="rearWheel">
+<circle cx="230" cy="320" r="55" fill="none" stroke="#2B2B2B" stroke-width="8"/>
+<circle cx="230" cy="320" r="49" fill="none" stroke="#C9CED6" stroke-width="2.5"/>
+<g id="rSpokes" stroke="#C9CED6" stroke-width="1.2">
+<line x1="181" y1="320" x2="279" y2="320"/><line x1="230" y1="271" x2="230" y2="369"/><line x1="195.4" y1="285.4" x2="264.6" y2="354.6"/><line x1="195.4" y1="354.6" x2="264.6" y2="285.4"/>
+<line x1="184.7" y1="301.2" x2="275.3" y2="338.8"/><line x1="211.2" y1="274.7" x2="248.8" y2="365.3"/><line x1="184.7" y1="338.8" x2="275.3" y2="301.2"/><line x1="211.2" y1="365.3" x2="248.8" y2="274.7"/>
+<circle cx="230" cy="275" r="3" fill="#FFD25A" stroke="none"/>
+</g>
+<circle cx="230" cy="320" r="7" fill="#7A7F87"/>
+</g>
+<g id="frontWheel">
+<circle cx="430" cy="320" r="55" fill="none" stroke="#2B2B2B" stroke-width="8"/>
+<circle cx="430" cy="320" r="49" fill="none" stroke="#C9CED6" stroke-width="2.5"/>
+<g id="fSpokes" stroke="#C9CED6" stroke-width="1.2">
+<line x1="381" y1="320" x2="479" y2="320"/><line x1="430" y1="271" x2="430" y2="369"/><line x1="395.4" y1="285.4" x2="464.6" y2="354.6"/><line x1="395.4" y1="354.6" x2="464.6" y2="285.4"/>
+<line x1="384.7" y1="301.2" x2="475.3" y2="338.8"/><line x1="411.2" y1="274.7" x2="448.8" y2="365.3"/><line x1="384.7" y1="338.8" x2="475.3" y2="301.2"/><line x1="411.2" y1="365.3" x2="448.8" y2="274.7"/>
+<circle cx="430" cy="275" r="3" fill="#FFD25A" stroke="none"/>
+</g>
+<circle cx="430" cy="320" r="7" fill="#7A7F87"/>
+</g>
+<path d="M176 300 C190 262 250 252 284 290" fill="none" stroke="#B9302C" stroke-width="5" stroke-linecap="round"/>
+<g fill="none" stroke="#E04B3F" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+<path d="M320 320 L299 236"/><path d="M301 244 L406 228"/><path d="M409 242 L320 320"/><path d="M320 320 L230 320"/><path d="M301 244 L230 320"/>
+</g>
+<path d="M403 206 L410 244 L430 320" fill="none" stroke="#B9302C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M403 206 L402 198" stroke="#7A7F87" stroke-width="5" stroke-linecap="round"/>
+<path d="M394 197 L414 200" stroke="#2B2B2B" stroke-width="7" stroke-linecap="round"/>
+<path d="M299 236 L298 230" stroke="#7A7F87" stroke-width="5" stroke-linecap="round"/>
+<path d="M276 228 C286 222 312 224 322 230 C312 236 288 236 276 228 Z" fill="#3A2A22"/>
+<path d="M230 320 L320 320" stroke="#3A3A3A" stroke-width="2" stroke-dasharray="3 2" transform="translate(0,-9)"/>
+<path d="M230 320 L320 320" stroke="#3A3A3A" stroke-width="2" stroke-dasharray="3 2" transform="translate(0,9)"/>
+<circle cx="320" cy="320" r="13" fill="#D9DDE3" stroke="#7A7F87" stroke-width="3"/>
+<circle cx="320" cy="320" r="4" fill="#7A7F87"/>
+<circle cx="417" cy="236" r="6" fill="#FFE08A" stroke="#7A7F87" stroke-width="2"/>
+<g id="upper">
+<g id="tail">
+<path d="M316 190 C262 184 205 200 132 166 C186 226 262 238 318 234 Z" fill="#5FA83C"/>
+<path d="M300 232 C255 234 200 218 150 184 C196 232 262 240 318 234 Z" fill="#D9E38A"/>
+<path d="M282 188 L276 174 L266 188 Z M254 189 L247 176 L238 190 Z M226 190 L218 178 L211 189 Z M199 186 L191 175 L185 184 Z M174 180 L166 170 L161 177 Z" fill="#3F7D2A"/>
+</g>
+<path d="M286 208 C280 176 330 140 376 145 C402 148 408 176 392 192 C372 216 332 240 306 237 C291 235 285 222 286 208 Z" fill="#5FA83C"/>
+<path d="M398 182 C378 212 338 236 310 237 C334 224 368 202 388 172 Z" fill="#D9E38A"/>
+<path d="M372 196 L378 200 M356 209 L362 214 M340 220 L345 226 M324 228 L328 235" stroke="#B9C76A" stroke-width="2" stroke-linecap="round"/>
+<path d="M293 186 L288 170 L303 176 Z M307 170 L304 153 L319 161 Z M324 158 L324 141 L337 151 Z M343 149 L346 133 L357 146 Z" fill="#3F7D2A"/>
+<circle cx="318" cy="196" r="4" fill="#4F9433"/><circle cx="338" cy="180" r="5" fill="#4F9433"/><circle cx="358" cy="166" r="4" fill="#4F9433"/><circle cx="330" cy="206" r="3" fill="#4F9433"/>
+<g id="scarfTail">
+<path d="M388 160 C372 150 356 158 340 148 C346 160 344 166 336 170 C354 174 372 166 388 172 Z" fill="#E04B3F"/>
+<path d="M376 160 C366 158 358 160 350 156" stroke="#B9302C" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g id="jaw">
+<path d="M404 156 L520 150 C526 158 520 166 508 167 C472 172 432 174 404 170 Z" fill="#D9E38A"/>
+<path d="M430 171 L432 164 M452 171 L454 163 M474 170 L476 162 M496 168 L498 160" stroke="#B9C76A" stroke-width="2" stroke-linecap="round"/>
+</g>
+<path d="M386 168 C380 138 398 114 428 114 C448 114 458 124 474 128 C492 132 508 131 520 134 C533 137 533 150 520 151 L408 160 C398 164 390 172 386 168 Z" fill="#5FA83C"/>
+<path d="M440 157 L445 165 L450 156 Z M458 156 L463 164 L468 155 Z M476 155 L481 162 L486 154 Z M494 153 L499 160 L504 152 Z M510 152 L514 158 L518 151 Z" fill="#FFFFFF"/>
+<circle cx="516" cy="134" r="6" fill="#5FA83C"/>
+<ellipse cx="517" cy="133" rx="2.2" ry="1.6" fill="#2D5C1E"/>
+<circle cx="436" cy="118" r="14" fill="#5FA83C"/>
+<circle cx="438" cy="118" r="9" fill="#FFFFFF"/>
+<circle cx="441" cy="119" r="4.5" fill="#1F2A1A"/>
+<circle cx="442.5" cy="117" r="1.5" fill="#FFFFFF"/>
+<ellipse id="lid" cx="438" cy="118" rx="10" ry="0" fill="#4F9433"/>
+<path d="M424 106 C432 100 444 100 452 106" stroke="#3F7D2A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M462 138 C472 142 484 142 494 139" stroke="#4F9433" stroke-width="2" fill="none" stroke-linecap="round"/>
+<circle cx="410" cy="134" r="3" fill="#4F9433"/><circle cx="402" cy="146" r="2.5" fill="#4F9433"/>
+<path d="M382 150 C388 160 396 170 404 178" stroke="#E04B3F" stroke-width="11" stroke-linecap="round" fill="none"/>
+</g>
+<g id="nearLeg">
+<line id="nCrank" x1="320" y1="320" x2="344" y2="320" stroke="#9AA0A8" stroke-width="5" stroke-linecap="round"/>
+<rect id="nPedal" x="334" y="318" width="20" height="5" rx="2" fill="#2B2B2B"/>
+<path id="nThigh" d="M308 222 L366 262" stroke="#5FA83C" stroke-width="24" stroke-linecap="round" fill="none"/>
+<path id="nShin" d="M366 262 L344 312" stroke="#5FA83C" stroke-width="16" stroke-linecap="round" fill="none"/>
+<ellipse id="nFoot" cx="350" cy="314" rx="14" ry="6.5" fill="#4F9433"/>
+</g>
+<g id="armG">
+<path d="M374 178 Q384 214 406 200" stroke="#5FA83C" stroke-width="13" stroke-linecap="round" fill="none"/>
+<circle cx="406" cy="199" r="8" fill="#4F9433"/>
+</g>
+</g>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var BB=[320,320],R=24,L=66,V=170;
+function ik(th,bob){
+var H=[308,222+bob],P=[BB[0]+R*Math.cos(th),BB[1]+R*Math.sin(th)],A=[P[0],P[1]-8];
+var dx=A[0]-H[0],dy=A[1]-H[1],d=Math.hypot(dx,dy),b=Math.atan2(dy,dx),a=Math.acos(Math.min(1,d/(2*L)));
+return{H:H,K:[H[0]+L*Math.cos(b-a),H[1]+L*Math.sin(b-a)],A:A,P:P};
+}
+function setLeg(p,th,bob){
+var g=ik(th,bob);
+$(p+'Thigh').setAttribute('d','M'+g.H[0]+' '+g.H[1]+' L'+g.K[0].toFixed(1)+' '+g.K[1].toFixed(1));
+$(p+'Shin').setAttribute('d','M'+g.K[0].toFixed(1)+' '+g.K[1].toFixed(1)+' L'+g.A[0].toFixed(1)+' '+g.A[1].toFixed(1));
+var f=$(p+'Foot');f.setAttribute('cx',(g.A[0]+5).toFixed(1));f.setAttribute('cy',(g.A[1]+3).toFixed(1));
+var c=$(p+'Crank');c.setAttribute('x2',g.P[0].toFixed(1));c.setAttribute('y2',g.P[1].toFixed(1));
+$(p+'Pedal').setAttribute('x',(g.P[0]-10).toFixed(1));$(p+'Pedal').setAttribute('y',(g.P[1]-2.5).toFixed(1));
+}
+function tx(id,x){$(id).setAttribute('transform','translate('+x.toFixed(1)+',0)')}
+function frame(t){
+var s=t/1000,th=s*4.2,bob=Math.sin(th*2)*1.2,wd=(s*V/55)*180/Math.PI;
+setLeg('n',th,bob);setLeg('f',th+Math.PI,bob);
+$('rSpokes').setAttribute('transform','rotate('+(wd%360).toFixed(1)+' 230 320)');
+$('fSpokes').setAttribute('transform','rotate('+(wd%360).toFixed(1)+' 430 320)');
+$('upper').setAttribute('transform','translate(0,'+bob.toFixed(2)+')');
+$('armG').setAttribute('transform','translate(0,'+(bob*0.5).toFixed(2)+')');
+$('tail').setAttribute('transform','rotate('+(Math.sin(s*3.2)*5).toFixed(2)+' 304 212)');
+$('scarfTail').setAttribute('transform','rotate('+(Math.sin(s*10)*9).toFixed(2)+' 388 164)');
+$('jaw').setAttribute('transform','rotate('+(3+Math.sin(s*5)*2.5).toFixed(2)+' 404 160)');
+$('lid').setAttribute('ry',(s%3.6)<0.14?10:0);
+$('rays').setAttribute('transform','rotate('+((s*12)%360).toFixed(1)+' 580 80)');
+tx('dashes',-((s*V)%80));tx('bushes',-((s*V*0.45)%680));tx('hillsNear',-((s*V*0.2)%680));tx('hillsFar',-((s*V*0.1)%680));tx('clouds',-((s*V*0.04)%680));
+['w1','w2','w3'].forEach(function(id,i){var p=((s*1.6+i*0.37)%1);$(id).setAttribute('transform','translate('+(120-p*200).toFixed(1)+',0)');$(id).setAttribute('opacity',(Math.sin(p*Math.PI)).toFixed(2));});
+}
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduce){frame(400);return;}
+function loop(t){frame(t);requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+})();
+</script>
+</svg>
+</body>
+</html>
