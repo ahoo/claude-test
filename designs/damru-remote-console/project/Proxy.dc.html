@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>damru 控制台 · 网络代理</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#176b5b}a:hover{color:#0d4f43}
+.card{background:#ffffff;border:1px solid #dce2d9;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;min-width:0}
+.card h2{margin:0;font-size:16px;font-weight:700}
+.muted{color:#5f685d}
+.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.b-ok{background:#def3e5;color:#1a6338}
+.b-fail{background:#fde7e4;color:#a01e14}
+.b-warn{background:#fff1c7;color:#704800}
+.b-idle{background:#e7ebe5;color:#454d43}
+.b-info{background:#dff1eb;color:#0d4f43}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 16px;border-radius:6px;border:1px solid #c9d1c6;background:#ffffff;color:#151815;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#f0f3ef;color:#151815}
+.btn-primary{background:#176b5b;border-color:#176b5b;color:#ffffff}
+.btn-primary:hover{background:#0d4f43;color:#ffffff}
+.btn-danger-ghost{color:#a01e14;border-color:#efb5ad}
+.btn-danger-ghost:hover{background:#fde7e4;color:#a01e14}
+.nav-item{display:block;padding:11px 12px;border-radius:6px;color:#353c33;text-decoration:none;font-size:14px;font-weight:600}
+.nav-item:hover{background:#f0f3ef;color:#151815}
+.nav-item.is-active{background:#dff1eb;color:#0d4f43;font-weight:700}
+.nav-label{font-size:12px;font-weight:700;color:#5f685d;padding:0 12px;letter-spacing:.02em}
+.kv{display:grid;grid-template-columns:minmax(0,112px) minmax(0,1fr);gap:8px 16px;font-size:14px;margin:0}
+.kv dt{color:#5f685d}.kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.input{min-height:44px;padding:10px 12px;border:1px solid #c9d1c6;border-radius:6px;background:#ffffff;font-size:14px;color:#151815;box-sizing:border-box;width:100%;font-family:inherit}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:10px 14px;border:1px solid #dce2d9;border-radius:8px;background:#ffffff;text-align:left;cursor:pointer;font-family:inherit;font-size:14px;color:#151815;box-sizing:border-box}
+.opt:hover{background:#f6f7f4}
+.opt.on{border-color:#176b5b;background:#f2faf6;box-shadow:0 0 0 1px #176b5b inset}
+.radio{width:16px;height:16px;border-radius:50%;border:2px solid #7d877b;box-sizing:border-box;flex:none}
+.radio.on{border:5px solid #176b5b}
+.step{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14px;padding:8px 0;border-bottom:1px solid #edf0eb}
+.stat{display:flex;flex-direction:column;gap:4px}
+.stat-label{font-size:13px;font-weight:700;color:#5f685d}
+.stat-value{font-size:20px;font-weight:800;overflow-wrap:anywhere}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch; background: #f6f7f4; color: #151815; font-family: Aptos, 'Segoe UI', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 15px; line-height: 1.5">
+
+  <nav aria-label="主导航" style="flex: 1 1 220px; box-sizing: border-box; padding: 24px 14px; background: #ffffff; border-right: 1px solid #dce2d9; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 12px">
+      <span style="font-size: 20px; font-weight: 800; letter-spacing: -0.01em">damru</span>
+      <span class="muted" style="font-size: 13px">远程控制台 · kr</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span class="nav-label">运行</span>
+      <a class="nav-item" href="Main.dc.html">总览</a>
+      <a class="nav-item" href="Tasks.dc.html">任务</a>
+      <a class="nav-item" href="Worker.dc.html">Worker</a>
+      <a class="nav-item is-active" href="Proxy.dc.html" aria-current="page">网络代理</a>
+      <a class="nav-item" href="Audit.dc.html">审计与令牌</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span class="nav-label">本机维护（原有页面）</span>
+      <a class="nav-item" href="#">安装与环境</a>
+      <a class="nav-item" href="#">配置</a>
+      <a class="nav-item" href="#">Job 日志</a>
+    </div>
+    <div style="margin-top: auto; padding: 14px 12px; border-radius: 8px; background: #f0f3ef; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+      <span style="font-weight: 700">ops-laptop · 管理员</span>
+      <span class="muted mono" style="font-size: 12px">100.101.12.4 · tailnet</span>
+      <span class="muted">令牌 6 天后过期</span>
+      <button class="btn" type="button" style="min-height: 36px; margin-top: 4px">退出</button>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 20px">
+    <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span class="muted" style="font-size: 13px; font-weight: 700">运行</span>
+        <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.01em">网络代理</h1>
+        <span class="muted" style="font-size: 13px">透明代理：damru-worker-0 的全部 TCP/UDP → redsocks → 上游代理</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+        <span class="muted" style="font-size: 13px">数据来自 iptables-worker-proxy.sh status · 30 秒前</span>
+        <button type="button" class="btn">刷新</button>
+      </div>
+    </header>
+
+    <section aria-label="当前状态" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
+      <div class="card stat" style="gap: 6px">
+        <span class="stat-label">出口 IP</span>
+        <span class="stat-value mono">203.0.113.24</span>
+        <span class="muted" style="font-size: 13px">经上游查询 · 13:40</span>
+      </div>
+      <div class="card stat" style="gap: 6px">
+        <span class="stat-label">上游</span>
+        <span class="stat-value mono" style="font-size: 16px">socks5://127.0.0.1:11077</span>
+        <span class="muted" style="font-size: 13px">UDP 中继同一上游</span>
+      </div>
+      <div class="card stat" style="gap: 6px">
+        <span class="stat-label">kill switch</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span class="badge b-ok" style="font-size: 14px">开启</span></span>
+        <span class="muted mono" style="font-size: 12px">DOCKER-USER → DAMRU_WKILL</span>
+      </div>
+      <div class="card stat" style="gap: 6px">
+        <span class="stat-label">redsocks</span>
+        <span style="display: flex; align-items: center; gap: 8px"><span class="badge b-ok" style="font-size: 14px">运行中</span></span>
+        <span class="muted mono" style="font-size: 12px">172.17.0.1 · TCP :12345 · UDP :12346</span>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start">
+      <section class="card" aria-labelledby="switch-h" style="flex: 3 1 520px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+          <h2 id="switch-h">切换上游</h2>
+          <span class="muted" style="font-size: 13px">需要「管理员」权限</span>
+        </div>
+        <div role="radiogroup" aria-label="上游代理" style="display: flex; flex-direction: column; gap: 8px">
+          <sc-for list="{{presets}}" as="p" hint-placeholder-count="3">
+            <button type="button" role="radio" aria-checked="{{p.on}}" class="{{p.optClass}}" onClick="{{p.pick}}">
+              <span class="{{p.radioClass}}"></span>
+              <span class="mono" style="flex: 1 1 auto; min-width: 0">{{p.url}}</span>
+              <span class="muted" style="font-size: 13px">{{p.note}}</span>
+            </button>
+          </sc-for>
+          <div style="display: flex; gap: 8px; align-items: center">
+            <label for="custom" class="muted" style="font-size: 13px; white-space: nowrap">自定义</label>
+            <input id="custom" class="input mono" placeholder="socks5://host:port 或 http://host:port">
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 6px">
+            <span style="font-size: 13px; font-weight: 700">{{stepsTitle}}</span>
+            <span class="{{stepsBadgeClass}}">{{stepsBadge}}</span>
+          </div>
+          <sc-for list="{{steps}}" as="s" hint-placeholder-count="7">
+            <div class="step">
+              <span class="muted mono" style="font-size: 13px">{{s.n}}</span>
+              <span style="min-width: 0">{{s.label}} <span class="muted" style="font-size: 13px">{{s.detail}}</span></span>
+              <span class="{{s.cls}}">{{s.mark}}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+          <button type="button" class="btn">预检</button>
+          <a class="btn btn-primary" href="Confirm.dc.html">切换到所选上游</a>
+          <span class="muted" style="font-size: 13px; flex: 1 1 240px">切换时 kill switch 保持开启：正在跑的任务会断网几秒，但不会走真实 IP。</span>
+        </div>
+      </section>
+
+      <div style="flex: 2 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+        <section class="card" aria-labelledby="rules-h">
+          <h2 id="rules-h">规则</h2>
+          <dl class="kv">
+            <dt>代理源</dt><dd class="mono" style="font-size: 13px">172.17.0.3/32（容器当前 IP）</dd>
+            <dt>LAN 直连</dt><dd class="mono" style="font-size: 12px">10/8 · 172.16/12 · 192.168/16 · 169.254/16 · 100.64/10</dd>
+            <dt>DNS</dt><dd>iptables-worker-dns.sh :53 → :1053，排在代理规则之前</dd>
+            <dt>IP 变化</dt><dd><span class="badge b-ok">watch 运行中</span> <span class="muted" style="font-size: 13px">damru-worker-proxy.service</span></dd>
+          </dl>
+          <pre class="mono" style="margin: 0; padding: 12px; border-radius: 6px; background: #151815; color: #e3e8e1; font-size: 12px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere">-A PREROUTING -s 172.17.0.3/32 -j DAMRU_WPROXY
+-A DAMRU_WPROXY -p tcp -j DNAT --to-destination 172.17.0.1:12345
+-A DAMRU_WPROXY -p udp -j DNAT --to-destination 172.17.0.1:12346
+-A DOCKER-USER -s 172.17.0.3/32 -j DAMRU_WKILL</pre>
+        </section>
+
+        <section class="card" aria-labelledby="log-h">
+          <h2 id="log-h">redsocks 最近活动</h2>
+          <pre class="mono" style="margin: 0; padding: 12px; border-radius: 6px; background: #f0f3ef; font-size: 12px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere">14:12:06 redsocks accepted 172.17.0.3:40712 -> 93.184.215.14:443
+14:12:06 redudp Starting UDP relay 172.17.0.3:51920
+14:11:58 redsocks accepted 172.17.0.3:40698 -> 93.184.215.14:443</pre>
+        </section>
+
+        <section class="card" aria-labelledby="danger-h" style="border-color: #efb5ad">
+          <h2 id="danger-h" style="color: #a01e14">危险操作</h2>
+          <span style="font-size: 14px">以下操作会让 worker 直接用 kr 的真实 IP 上网，需要输入 worker 名称确认，并写入审计日志。</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <a class="btn btn-danger-ghost" href="Confirm.dc.html">关闭 kill switch</a>
+            <a class="btn btn-danger-ghost" href="Confirm.dc.html">移除全部规则（flush）</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { picked: 0 };
+  }
+  renderVals() {
+    const list = [
+      { url: 'socks5://127.0.0.1:11077', note: '当前' },
+      { url: 'socks5://172.17.0.1:11079', note: '' },
+      { url: 'http://172.17.0.1:10077', note: 'UDP 仍走原 SOCKS5' }
+    ];
+    const presets = list.map((p, i) => {
+      const on = i === this.state.picked;
+      return { ...p, on, optClass: on ? 'opt on' : 'opt', radioClass: on ? 'radio on' : 'radio',
+        pick: () => this.setState({ picked: i }) };
+    });
+    const ok = (n, label, detail) => ({ n, label, detail, mark: '通过', cls: 'badge b-ok' });
+    const todo = (n, label) => ({ n, label, detail: '', mark: '待执行', cls: 'badge b-idle' });
+    const current = this.state.picked === 0;
+    const steps = current ? [
+      ok(1, '上游 TCP 可达', '127.0.0.1:11077'),
+      ok(2, '经上游查询出口 IP', '203.0.113.24'),
+      ok(3, 'redsocks 配置语法检查', 'redsocks -t'),
+      ok(4, '重启 redsocks', '监听 :12345 / :12346'),
+      ok(5, '应用 iptables 规则', 'DAMRU_WPROXY + DAMRU_WKILL'),
+      ok(6, 'worker 侧 TCP 探测', 'redsocks 日志中出现'),
+      ok(7, 'worker 侧 UDP 探测', 'redudp 建立中继')
+    ] : [
+      todo(1, '上游 TCP 可达'), todo(2, '经上游查询出口 IP'), todo(3, 'redsocks 配置语法检查'),
+      todo(4, '重启 redsocks'), todo(5, '应用 iptables 规则'), todo(6, 'worker 侧 TCP 探测'), todo(7, 'worker 侧 UDP 探测')
+    ];
+    return {
+      presets,
+      steps,
+      stepsTitle: current ? '上次切换（今天 09:14）' : '切换步骤',
+      stepsBadge: current ? 'RESULT=OK' : '未预检',
+      stepsBadgeClass: current ? 'badge b-ok' : 'badge b-idle'
+    };
+  }
+}
+</script>
+</body>
+</html>
