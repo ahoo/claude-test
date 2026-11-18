@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>damru 控制台 · 任务</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#176b5b}a:hover{color:#0d4f43}
+.card{background:#ffffff;border:1px solid #dce2d9;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;min-width:0}
+.card h2{margin:0;font-size:16px;font-weight:700}
+.muted{color:#5f685d}
+.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.b-ok{background:#def3e5;color:#1a6338}
+.b-fail{background:#fde7e4;color:#a01e14}
+.b-warn{background:#fff1c7;color:#704800}
+.b-idle{background:#e7ebe5;color:#454d43}
+.b-info{background:#dff1eb;color:#0d4f43}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 16px;border-radius:6px;border:1px solid #c9d1c6;background:#ffffff;color:#151815;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#f0f3ef;color:#151815}
+.btn-primary{background:#176b5b;border-color:#176b5b;color:#ffffff}
+.btn-primary:hover{background:#0d4f43;color:#ffffff}
+.btn-danger-ghost{color:#a01e14;border-color:#efb5ad}
+.btn-danger-ghost:hover{background:#fde7e4;color:#a01e14}
+.nav-item{display:block;padding:11px 12px;border-radius:6px;color:#353c33;text-decoration:none;font-size:14px;font-weight:600}
+.nav-item:hover{background:#f0f3ef;color:#151815}
+.nav-item.is-active{background:#dff1eb;color:#0d4f43;font-weight:700}
+.nav-label{font-size:12px;font-weight:700;color:#5f685d;padding:0 12px;letter-spacing:.02em}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;font-weight:700;color:#5f685d;padding:10px 12px;border-bottom:1px solid #dce2d9;white-space:nowrap}
+td{padding:12px;border-bottom:1px solid #edf0eb;vertical-align:top}
+.kv{display:grid;grid-template-columns:minmax(0,104px) minmax(0,1fr);gap:8px 16px;font-size:14px;margin:0}
+.kv dt{color:#5f685d}.kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:13px;font-weight:700}
+.input{min-height:44px;padding:10px 12px;border:1px solid #c9d1c6;border-radius:6px;background:#ffffff;font-size:14px;color:#151815;box-sizing:border-box;width:100%;font-family:inherit}
+.seg{display:inline-flex;padding:4px;border-radius:8px;background:#e7ebe5;gap:4px}
+.seg-btn{min-height:36px;padding:0 16px;border:0;border-radius:6px;background:transparent;font-size:14px;font-weight:700;color:#353c33;cursor:pointer}
+.seg-btn.on{background:#ffffff;color:#0d4f43;box-shadow:0 1px 2px rgb(24 35 21 / 0.12)}
+.row-btn{width:100%;display:grid;grid-template-columns:72px 64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px;border:0;border-bottom:1px solid #edf0eb;background:transparent;text-align:left;font-size:14px;color:#151815;cursor:pointer;font-family:inherit}
+.row-btn:hover{background:#f6f7f4}
+.row-btn.sel{background:#dff1eb}
+.check{display:flex;align-items:flex-start;gap:10px;font-size:14px}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch; background: #f6f7f4; color: #151815; font-family: Aptos, 'Segoe UI', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 15px; line-height: 1.5">
+
+  <nav aria-label="主导航" style="flex: 1 1 220px; box-sizing: border-box; padding: 24px 14px; background: #ffffff; border-right: 1px solid #dce2d9; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 12px">
+      <span style="font-size: 20px; font-weight: 800; letter-spacing: -0.01em">damru</span>
+      <span class="muted" style="font-size: 13px">远程控制台 · kr</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span class="nav-label">运行</span>
+      <a class="nav-item" href="Main.dc.html">总览</a>
+      <a class="nav-item is-active" href="Tasks.dc.html" aria-current="page">任务</a>
+      <a class="nav-item" href="Worker.dc.html">Worker</a>
+      <a class="nav-item" href="Proxy.dc.html">网络代理</a>
+      <a class="nav-item" href="Audit.dc.html">审计与令牌</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span class="nav-label">本机维护（原有页面）</span>
+      <a class="nav-item" href="#">安装与环境</a>
+      <a class="nav-item" href="#">配置</a>
+      <a class="nav-item" href="#">Job 日志</a>
+    </div>
+    <div style="margin-top: auto; padding: 14px 12px; border-radius: 8px; background: #f0f3ef; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+      <span style="font-weight: 700">ops-laptop · 管理员</span>
+      <span class="muted mono" style="font-size: 12px">100.101.12.4 · tailnet</span>
+      <span class="muted">令牌 6 天后过期</span>
+      <button class="btn" type="button" style="min-height: 36px; margin-top: 4px">退出</button>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 20px">
+    <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span class="muted" style="font-size: 13px; font-weight: 700">运行</span>
+        <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.01em">任务</h1>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+        <span class="badge b-info">队列运行中</span>
+        <a class="btn btn-danger-ghost" href="Confirm.dc.html">暂停队列</a>
+      </div>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: stretch">
+      <section class="card" aria-labelledby="new-h" style="flex: 3 1 520px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+          <h2 id="new-h">新建任务</h2>
+          <div class="seg" role="group" aria-label="任务类型">
+            <button type="button" class="{{browserSegClass}}" onClick="{{pickBrowser}}" aria-pressed="{{isBrowser}}">浏览器</button>
+            <button type="button" class="{{appSegClass}}" onClick="{{pickApp}}" aria-pressed="{{isApp}}">App（v3.5）</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="instr">指令</label>
+          <textarea id="instr" class="input" rows="3" style="resize: vertical">{{instructionSample}}</textarea>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+          <div class="field">
+            <label for="worker">Worker</label>
+            <select id="worker" class="input">
+              <option>damru-worker-0 · 127.0.0.1:5600</option>
+              <option>damru-worker-1 · 127.0.0.1:5601（已停止）</option>
+            </select>
+          </div>
+          <sc-if value="{{isApp}}" hint-placeholder-val="{{ false }}">
+            <div class="field">
+              <label for="pkg">期望前台包名（验证用）</label>
+              <input id="pkg" class="input mono" value="com.android.settings">
+            </div>
+          </sc-if>
+          <sc-if value="{{isBrowser}}" hint-placeholder-val="{{ true }}">
+            <div class="field">
+              <label for="path">执行路径</label>
+              <select id="path" class="input">
+                <option>warm 池（约 6 秒）</option>
+                <option>冷启动（约 34 秒，任务间完全隔离）</option>
+              </select>
+            </div>
+          </sc-if>
+          <div class="field">
+            <label for="timeout">超时（秒）</label>
+            <input id="timeout" class="input" value="{{timeoutSample}}" inputmode="numeric">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+          <button type="button" class="btn btn-primary">加入队列</button>
+          <sc-if value="{{isApp}}" hint-placeholder-val="{{ false }}">
+            <button type="button" class="btn">运行 preflight</button>
+          </sc-if>
+          <span class="muted" style="font-size: 13px">{{formHint}}</span>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="queue-h" style="flex: 2 1 360px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+          <h2 id="queue-h">队列 · worker-0</h2>
+          <span class="muted" style="font-size: 13px">按设备串行执行</span>
+        </div>
+        <div style="padding: 14px; border-radius: 8px; border: 1px solid #b9dccf; background: #f2faf6; display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+            <span class="badge b-info"><span class="dot" style="background: #176b5b"></span>运行中</span>
+            <span class="mono muted" style="font-size: 13px">已用 4.1 秒 / 300 秒</span>
+          </div>
+          <span style="font-weight: 700">Open https://example.com/pricing and screenshot</span>
+          <span class="muted" style="font-size: 13px">warm 池 · 当前步骤：导航中（UA 检查已通过）</span>
+          <div style="display: flex; gap: 8px"><button type="button" class="btn btn-danger-ghost" style="min-height: 36px">取消</button></div>
+        </div>
+        <sc-for list="{{queued}}" as="q" hint-placeholder-count="2">
+          <div style="padding: 12px 14px; border-radius: 8px; border: 1px solid #dce2d9; display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+            <span class="badge b-idle">排队 #{{q.pos}}</span>
+            <span style="flex: 1 1 180px; min-width: 0">{{q.instruction}}</span>
+            <span class="muted" style="font-size: 12px">{{q.who}}</span>
+            <button type="button" class="btn" style="min-height: 36px; padding: 0 12px">移除</button>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start">
+      <section class="card" aria-labelledby="hist-h" style="flex: 3 1 520px; padding-bottom: 8px">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+          <h2 id="hist-h">历史</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <label class="muted" for="f-state" style="font-size: 13px; align-self: center">筛选</label>
+            <select id="f-state" class="input" style="width: auto; min-height: 36px; padding: 4px 10px">
+              <option>全部结果</option><option>成功</option><option>失败</option><option>未验证</option>
+            </select>
+            <select class="input" aria-label="类型" style="width: auto; min-height: 36px; padding: 4px 10px">
+              <option>全部类型</option><option>浏览器</option><option>App</option>
+            </select>
+            <select class="input" aria-label="时间范围" style="width: auto; min-height: 36px; padding: 4px 10px">
+              <option>今天</option><option>7 天</option><option>30 天</option>
+            </select>
+          </div>
+        </div>
+        <div role="list" style="display: flex; flex-direction: column">
+          <sc-for list="{{history}}" as="h" hint-placeholder-count="6">
+            <button type="button" role="listitem" class="{{h.rowClass}}" onClick="{{h.pick}}">
+              <span class="mono" style="font-size: 13px">{{h.time}}</span>
+              <span class="badge b-idle" style="justify-self: start">{{h.type}}</span>
+              <span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{h.instruction}}</span>
+              <span class="{{h.resultClass}}">{{h.result}}</span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="detail-h" style="flex: 2 1 380px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span class="muted mono" style="font-size: 12px">{{sel.id}} · {{sel.worker}}</span>
+          <h2 id="detail-h" style="font-size: 18px">{{sel.instruction}}</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <span class="{{sel.resultClass}}">{{sel.result}}</span>
+            <span class="{{sel.verifiedClass}}">{{sel.verifiedLabel}}</span>
+            <span class="badge b-idle">{{sel.path}} · {{sel.duration}}</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <span style="font-size: 13px; font-weight: 700">独立验证</span>
+          <sc-for list="{{sel.checks}}" as="c" hint-placeholder-count="4">
+            <div class="check">
+              <span class="{{c.cls}}" style="min-width: 44px; justify-content: center">{{c.mark}}</span>
+              <span style="min-width: 0"><span style="font-weight: 700">{{c.name}}</span> <span class="muted">{{c.info}}</span></span>
+            </div>
+          </sc-for>
+        </div>
+        <dl class="kv">
+          <dt>请求 URL</dt><dd class="mono" style="font-size: 13px">{{sel.url}}</dd>
+          <dt>最终 URL</dt><dd class="mono" style="font-size: 13px">{{sel.finalUrl}}</dd>
+          <dt>页面标题</dt><dd>{{sel.title}}</dd>
+        </dl>
+        <div style="height: 180px; border-radius: 8px; border: 1px dashed #b9c2b6; background: #eef1ec; display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px; box-sizing: border-box">
+          <span class="muted" style="font-size: 13px">{{sel.shotLabel}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 13px; font-weight: 700">日志尾部（已脱敏）</span>
+          <pre class="mono" style="margin: 0; padding: 12px; border-radius: 6px; background: #151815; color: #e3e8e1; font-size: 12px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere">{{sel.log}}</pre>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <button type="button" class="btn btn-primary">重新运行</button>
+          <button type="button" class="btn">下载截图</button>
+          <button type="button" class="btn">复制 JSON</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1420}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { type: 'browser', selected: 'T-0412' };
+  }
+  renderVals() {
+    const isApp = this.state.type === 'app';
+    const ok = (name, info) => ({ name, info, mark: '通过', cls: 'badge b-ok' });
+    const bad = (name, info) => ({ name, info, mark: '失败', cls: 'badge b-fail' });
+    const items = [
+      { id: 'T-0412', time: '14:12:08', type: '浏览器', worker: 'damru-worker-0', instruction: 'Open https://example.com and screenshot',
+        result: '成功', resultClass: 'badge b-ok', verifiedLabel: '已验证', verifiedClass: 'badge b-ok', path: 'warm', duration: '5.8 秒',
+        url: 'https://example.com', finalUrl: 'https://example.com/', title: 'Example Domain',
+        checks: [ok('screenshot', '48 213 B'), ok('http', 'status=200'), ok('site', 'example.com → example.com'), ok('worker', 'sys.boot_completed=1')],
+        shotLabel: '截图预览 · 1080 × 2520 · damru-warm-q8x1.png',
+        log: 'navigated to https://example.com -> https://example.com/ (status=200), title=\'Example Domain\'\nscreenshot -> /home/ubuntu/.damru/shots/damru-warm-q8x1.png\nsite data cleared for 1/1 origins' },
+      { id: 'T-0411', time: '14:09:31', type: 'App', worker: 'damru-worker-0', instruction: '打开设置，进入网络和互联网',
+        result: '成功', resultClass: 'badge b-ok', verifiedLabel: '已验证 · com.android.settings', verifiedClass: 'badge b-ok', path: 'v3.5', duration: '1 分 52 秒',
+        url: '—', finalUrl: '—', title: '—',
+        checks: [ok('foreground', 'expect=com.android.settings foreground=[com.android.settings]')],
+        shotLabel: 'App 任务：最后一步的屏幕截图',
+        log: 'step 3: click "Network & internet"\nstep 4: terminate status=success\nexit=0' },
+      { id: 'T-0410', time: '14:05:17', type: '浏览器', worker: 'damru-worker-0', instruction: '打开 https://example.org，截图',
+        result: '成功', resultClass: 'badge b-ok', verifiedLabel: '验证失败', verifiedClass: 'badge b-fail', path: 'warm', duration: '12.4 秒',
+        url: 'https://example.org', finalUrl: 'https://example.org/blocked', title: 'Access denied',
+        checks: [ok('screenshot', '31 006 B'), bad('http', 'status=403'), ok('site', 'example.org → example.org'), ok('worker', 'sys.boot_completed=1')],
+        shotLabel: '截图预览 · 拦截页',
+        log: 'navigated to https://example.org -> https://example.org/blocked (status=403), title=\'Access denied\'\nsite data cleared for 1/1 origins' },
+      { id: 'T-0409', time: '13:58:02', type: 'App', worker: 'damru-worker-0', instruction: '打开微信，查看最新消息',
+        result: '成功', resultClass: 'badge b-ok', verifiedLabel: '未验证', verifiedClass: 'badge b-warn', path: 'v3.5', duration: '3 分 10 秒',
+        url: '—', finalUrl: '—', title: '—',
+        checks: [{ name: 'foreground', info: '未传 expect_package（前台：com.tencent.mm）', mark: '跳过', cls: 'badge b-warn' }],
+        shotLabel: 'App 任务：最后一步的屏幕截图',
+        log: 'step 6: terminate status=success\nexit=0 [warn: v35-env-key.diff not applied]' },
+      { id: 'T-0408', time: '13:50:44', type: '浏览器', worker: 'damru-worker-0', instruction: 'Open https://example.net',
+        result: '超时', resultClass: 'badge b-warn', verifiedLabel: '未验证', verifiedClass: 'badge b-idle', path: '冷启动', duration: '300 秒',
+        url: 'https://example.net', finalUrl: '—', title: '—',
+        checks: [],
+        shotLabel: '无截图（任务未完成，空文件已清理）',
+        log: 'browser task timed out after 300s' },
+      { id: 'T-0407', time: '13:41:19', type: '浏览器', worker: 'damru-worker-0', instruction: 'Open https://example.com/docs',
+        result: '失败', resultClass: 'badge b-fail', verifiedLabel: '未验证', verifiedClass: 'badge b-idle', path: 'warm', duration: '0.9 秒',
+        url: 'https://example.com/docs', finalUrl: '—', title: '—',
+        checks: [],
+        shotLabel: '未导航：UA 覆盖未生效，会话已重开',
+        log: 'browser task failed: OverrideNotApplied: new page UA \'Mozilla/5.0 (Linux; Android 10; K) …\' != spoofed UA; not navigating' }
+    ];
+    const history = items.map((it) => ({
+      ...it,
+      rowClass: it.id === this.state.selected ? 'row-btn sel' : 'row-btn',
+      pick: () => this.setState({ selected: it.id })
+    }));
+    const sel = items.find((it) => it.id === this.state.selected) || items[0];
+    return {
+      isApp,
+      isBrowser: !isApp,
+      browserSegClass: isApp ? 'seg-btn' : 'seg-btn on',
+      appSegClass: isApp ? 'seg-btn on' : 'seg-btn',
+      pickBrowser: () => this.setState({ type: 'browser' }),
+      pickApp: () => this.setState({ type: 'app' }),
+      instructionSample: isApp ? '打开设置，进入网络和互联网' : 'Open https://example.com and screenshot',
+      timeoutSample: isApp ? '1800' : '300',
+      formHint: isApp ? '提交前会检查 v3.5 补丁；未填包名则结果标记为未验证' : '同一 Worker 的任务按提交顺序执行',
+      queued: [
+        { pos: 1, instruction: '打开设置，查看 Wi-Fi 状态', who: 'ops-laptop' },
+        { pos: 2, instruction: 'Open https://example.org/status', who: 'cron · 每小时' }
+      ],
+      history,
+      sel
+    };
+  }
+}
+</script>
+</body>
+</html>

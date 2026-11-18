@@ -1,0 +1,21 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-11-17T01:27:47Z"},
+  "title": "damru 远程控制台",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1180, "title": "总览", "expand": "fill", "is_interactive": true},
+    "Tasks.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 1420, "title": "任务", "expand": "fill", "is_interactive": true},
+    "Worker.dc.html": {"x": 3040, "y": 0, "w": 1440, "h": 1260, "title": "Worker 详情与实时控制", "expand": "fill", "is_interactive": true},
+    "Proxy.dc.html": {"x": 0, "y": 1840, "w": 1440, "h": 1240, "title": "网络代理", "expand": "fill", "is_interactive": true},
+    "Audit.dc.html": {"x": 1520, "y": 1840, "w": 1440, "h": 1060, "title": "审计与令牌", "expand": "fill", "is_interactive": true},
+    "Confirm.dc.html": {"x": 3040, "y": 1840, "w": 560, "h": 480, "title": "危险操作确认", "is_interactive": true}
+  },
+  "order": ["Main.dc.html", "Tasks.dc.html", "Worker.dc.html", "Proxy.dc.html", "Audit.dc.html", "Confirm.dc.html"],
+  "notes": {
+    "row1": {"x": 0, "y": -340, "text": "运行与控制：总览 · 任务 · Worker", "kind": "title1", "maxW": 4480},
+    "row2": {"x": 0, "y": 1500, "text": "网络 · 审计 · 危险操作确认", "kind": "title1", "maxW": 4480}
+  },
+  "designSystems": []
+}

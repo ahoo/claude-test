@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>damru 控制台 · 总览</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#176b5b}a:hover{color:#0d4f43}
+.card{background:#ffffff;border:1px solid #dce2d9;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;min-width:0}
+.card h2{margin:0;font-size:16px;font-weight:700}
+.muted{color:#5f685d}
+.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.b-ok{background:#def3e5;color:#1a6338}
+.b-fail{background:#fde7e4;color:#a01e14}
+.b-warn{background:#fff1c7;color:#704800}
+.b-idle{background:#e7ebe5;color:#454d43}
+.b-info{background:#dff1eb;color:#0d4f43}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 16px;border-radius:6px;border:1px solid #c9d1c6;background:#ffffff;color:#151815;font-size:14px;font-weight:700;text-decoration:none;box-sizing:border-box;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#f0f3ef;color:#151815}
+.btn-primary{background:#176b5b;border-color:#176b5b;color:#ffffff}
+.btn-primary:hover{background:#0d4f43;color:#ffffff}
+.btn-danger-ghost{color:#a01e14;border-color:#efb5ad}
+.btn-danger-ghost:hover{background:#fde7e4;color:#a01e14}
+.nav-item{display:block;padding:11px 12px;border-radius:6px;color:#353c33;text-decoration:none;font-size:14px;font-weight:600}
+.nav-item:hover{background:#f0f3ef;color:#151815}
+.nav-item.is-active{background:#dff1eb;color:#0d4f43;font-weight:700}
+.nav-label{font-size:12px;font-weight:700;color:#5f685d;padding:0 12px;letter-spacing:.02em}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;font-weight:700;color:#5f685d;padding:10px 12px;border-bottom:1px solid #dce2d9;white-space:nowrap}
+td{padding:12px;border-bottom:1px solid #edf0eb;vertical-align:top}
+.kv{display:grid;grid-template-columns:minmax(0,104px) minmax(0,1fr);gap:8px 16px;font-size:14px;margin:0}
+.kv dt{color:#5f685d}.kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch; background: #f6f7f4; color: #151815; font-family: Aptos, 'Segoe UI', system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 15px; line-height: 1.5">
+
+  <nav aria-label="主导航" style="flex: 1 1 220px; box-sizing: border-box; padding: 24px 14px; background: #ffffff; border-right: 1px solid #dce2d9; display: flex; flex-direction: column; gap: 22px">
+    <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 12px">
+      <span style="font-size: 20px; font-weight: 800; letter-spacing: -0.01em">damru</span>
+      <span class="muted" style="font-size: 13px">远程控制台 · kr</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span class="nav-label">运行</span>
+      <a class="nav-item is-active" href="Main.dc.html" aria-current="page">总览</a>
+      <a class="nav-item" href="Tasks.dc.html">任务</a>
+      <a class="nav-item" href="Worker.dc.html">Worker</a>
+      <a class="nav-item" href="Proxy.dc.html">网络代理</a>
+      <a class="nav-item" href="Audit.dc.html">审计与令牌</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <span class="nav-label">本机维护（原有页面）</span>
+      <a class="nav-item" href="#">安装与环境</a>
+      <a class="nav-item" href="#">配置</a>
+      <a class="nav-item" href="#">Job 日志</a>
+    </div>
+    <div style="margin-top: auto; padding: 14px 12px; border-radius: 8px; background: #f0f3ef; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+      <span style="font-weight: 700">ops-laptop · 管理员</span>
+      <span class="muted mono" style="font-size: 12px">100.101.12.4 · tailnet</span>
+      <span class="muted">令牌 6 天后过期</span>
+      <button class="btn" type="button" style="min-height: 36px; margin-top: 4px">退出</button>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 22px">
+    <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span class="muted" style="font-size: 13px; font-weight: 700">运行</span>
+        <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.01em">总览</h1>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+        <span class="badge b-ok"><span class="dot" style="background: #1f7a43"></span>已连接 · 2 秒前刷新</span>
+        <a class="btn btn-primary" href="Tasks.dc.html">新建任务</a>
+        <a class="btn btn-danger-ghost" href="Confirm.dc.html">暂停队列</a>
+      </div>
+    </header>
+
+    <section aria-label="提醒" style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px; background: #fff7dc; border: 1px solid #f0dc9a">
+        <span class="badge b-warn">安全</span>
+        <span style="flex: 1 1 320px; min-width: 0">v35-env-key.diff 尚未应用：App 任务的 API key 仍通过命令行参数传给 v3.5，本机用户可在 ps 中看到。</span>
+        <a href="Worker.dc.html" style="font-weight: 700; font-size: 14px">查看修复方法</a>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px; background: #ffffff; border: 1px solid #dce2d9">
+        <span class="badge b-info">计划</span>
+        <span style="flex: 1 1 320px; min-width: 0">worker-0 的 warm 会话已运行 1 小时 52 分，将在 8 分钟后自动轮换。</span>
+        <a href="Worker.dc.html" style="font-weight: 700; font-size: 14px">立即轮换</a>
+      </div>
+    </section>
+
+    <section aria-label="今日概况" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+      <div class="card" style="gap: 6px">
+        <span class="muted" style="font-size: 13px; font-weight: 700">今日任务</span>
+        <span style="font-size: 30px; font-weight: 800">38</span>
+        <span class="muted" style="font-size: 13px">成功 35 · 失败 3</span>
+      </div>
+      <div class="card" style="gap: 6px">
+        <span class="muted" style="font-size: 13px; font-weight: 700">已验证</span>
+        <span style="font-size: 30px; font-weight: 800">33 / 35</span>
+        <span class="muted" style="font-size: 13px">2 个 App 任务未传 expect_package</span>
+      </div>
+      <div class="card" style="gap: 6px">
+        <span class="muted" style="font-size: 13px; font-weight: 700">队列</span>
+        <span style="font-size: 30px; font-weight: 800">1 运行 · 2 排队</span>
+        <span class="muted" style="font-size: 13px">设备锁等待最长 41 秒</span>
+      </div>
+      <div class="card" style="gap: 6px">
+        <span class="muted" style="font-size: 13px; font-weight: 700">浏览器任务耗时（中位数）</span>
+        <span style="font-size: 30px; font-weight: 800">6.2 秒</span>
+        <span class="muted" style="font-size: 13px">warm 池 · 冷启动约 34 秒</span>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start">
+      <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+
+        <section class="card" aria-labelledby="workers-h">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+            <h2 id="workers-h">Workers</h2>
+            <span class="muted" style="font-size: 13px">每 5 秒探测一次 adb 与 CDP</span>
+          </div>
+          <div style="overflow-x: auto">
+            <table>
+              <thead>
+                <tr><th>Worker</th><th>状态</th><th>设备锁</th><th>warm 会话</th><th>出口</th><th></th></tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{workers}}" as="w" hint-placeholder-count="2">
+                  <tr>
+                    <td>
+                      <div style="font-weight: 700">{{w.name}}</div>
+                      <div class="muted mono" style="font-size: 12px">{{w.serial}} · {{w.profile}}</div>
+                    </td>
+                    <td><span class="{{w.stateClass}}"><span class="dot" style="background: currentColor"></span>{{w.state}}</span></td>
+                    <td><div>{{w.lock}}</div><div class="muted" style="font-size: 12px">{{w.lockSince}}</div></td>
+                    <td><div>{{w.warm}}</div><div class="muted" style="font-size: 12px">{{w.warmDetail}}</div></td>
+                    <td><div class="mono" style="font-size: 13px">{{w.egress}}</div><div class="muted" style="font-size: 12px">{{w.killSwitch}}</div></td>
+                    <td style="text-align: right"><a class="btn" href="Worker.dc.html" style="min-height: 36px">打开</a></td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="recent-h">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+            <h2 id="recent-h">最近任务</h2>
+            <a href="Tasks.dc.html" style="font-size: 14px; font-weight: 700">全部任务</a>
+          </div>
+          <div style="overflow-x: auto">
+            <table>
+              <thead>
+                <tr><th>时间</th><th>类型</th><th>指令</th><th>结果</th><th>验证</th><th>路径</th><th style="text-align: right">耗时</th></tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{tasks}}" as="t" hint-placeholder-count="5">
+                  <tr>
+                    <td class="mono" style="font-size: 13px; white-space: nowrap">{{t.time}}</td>
+                    <td><span class="badge b-idle">{{t.type}}</span></td>
+                    <td style="min-width: 240px">{{t.instruction}}</td>
+                    <td><span class="{{t.resultClass}}">{{t.result}}</span></td>
+                    <td style="font-size: 13px">{{t.verified}}</td>
+                    <td class="muted" style="font-size: 13px; white-space: nowrap">{{t.path}}</td>
+                    <td class="mono" style="font-size: 13px; text-align: right; white-space: nowrap">{{t.duration}}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <aside style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+        <section class="card" aria-labelledby="net-h">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+            <h2 id="net-h">网络</h2>
+            <span class="badge b-ok">kill switch 开启</span>
+          </div>
+          <dl class="kv">
+            <dt>出口 IP</dt><dd class="mono">203.0.113.24</dd>
+            <dt>上游</dt><dd class="mono">socks5://127.0.0.1:11077</dd>
+            <dt>redsocks</dt><dd>运行中 · TCP :12345 · UDP :12346</dd>
+            <dt>最近探测</dt><dd>13:40 · TCP 通过 · UDP 通过</dd>
+          </dl>
+          <a class="btn" href="Proxy.dc.html">管理代理</a>
+        </section>
+
+        <section class="card" aria-labelledby="warm-h">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+            <h2 id="warm-h">warm 池</h2>
+            <span class="badge b-ok">会话已开</span>
+          </div>
+          <dl class="kv">
+            <dt>Worker</dt><dd>damru-worker-0</dd>
+            <dt>已服务</dt><dd>12 / 25 个任务</dd>
+            <dt>会话时长</dt><dd>1 小时 52 分 / 2 小时</dd>
+            <dt>UA 检查</dt><dd>通过（每个任务导航前）</dd>
+            <dt>探活</dt><dd>2 分钟前 · adb + CDP 正常</dd>
+          </dl>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <a class="btn" href="Worker.dc.html">立即轮换</a>
+            <a class="btn btn-danger-ghost" href="Confirm.dc.html">停止 daemon</a>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="v35-h">
+          <h2 id="v35-h">App 自动化（v3.5）</h2>
+          <dl class="kv">
+            <dt>preflight</dt><dd>通过 · 必需补丁 3/3</dd>
+            <dt>env-key 补丁</dt><dd><span class="badge b-warn">未应用</span></dd>
+            <dt>模型网关</dt><dd class="mono" style="font-size: 13px">cli.hroze.org/v1</dd>
+          </dl>
+        </section>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      workers: [
+        { name: 'damru-worker-0', serial: '127.0.0.1:5600', profile: 'XQ-DE54', state: '运行中', stateClass: 'badge b-ok',
+          lock: 'warm-daemon（pid 48213）', lockSince: '持有 6 秒 · 1 个任务等待', warm: '会话已开', warmDetail: '12/25 任务',
+          egress: '203.0.113.24', killSwitch: 'kill switch 开启' },
+        { name: 'damru-worker-1', serial: '127.0.0.1:5601', profile: 'XQ-DE54', state: '已停止', stateClass: 'badge b-idle',
+          lock: '空闲', lockSince: '—', warm: '无会话', warmDetail: '—', egress: '—', killSwitch: '规则保留，流量已拦截' }
+      ],
+      tasks: [
+        { time: '14:12:08', type: '浏览器', instruction: 'Open https://example.com and screenshot', result: '成功', resultClass: 'badge b-ok', verified: '已验证', path: 'warm', duration: '5.8s' },
+        { time: '14:09:31', type: 'App', instruction: '打开设置，进入网络和互联网', result: '成功', resultClass: 'badge b-ok', verified: '已验证 · com.android.settings', path: 'v3.5', duration: '1m52s' },
+        { time: '14:05:17', type: '浏览器', instruction: '打开 https://example.org，截图', result: '失败', resultClass: 'badge b-fail', verified: 'http:FAIL(status=403)', path: 'warm', duration: '12.4s' },
+        { time: '13:58:02', type: 'App', instruction: '打开微信，查看最新消息', result: '成功', resultClass: 'badge b-ok', verified: '未验证 · 缺 expect_package', path: 'v3.5', duration: '3m10s' },
+        { time: '13:50:44', type: '浏览器', instruction: 'Open https://example.net', result: '超时', resultClass: 'badge b-warn', verified: '—', path: '冷启动', duration: '300s' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
